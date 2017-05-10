@@ -1,12 +1,17 @@
 package mappers;
 
+import entities.Book;
+import entities.City;
+
+import java.util.ArrayList;
+
 public interface SQLMapper {
 
     /**
      * Given a city name this method returns all book titles with corresponding authors that mention this city.
      * @return ArrayList <Book>
      */
-    public ArrayList <Book> getBookByCity(String city);
+    public ArrayList<Book> getBookByCity(String city);
 
     /**
      * Given a book title, this method plots all cities mentioned in this book.

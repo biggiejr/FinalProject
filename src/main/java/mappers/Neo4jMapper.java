@@ -1,5 +1,10 @@
 package mappers;
 
+import entities.Book;
+import entities.City;
+
+import java.util.ArrayList;
+
 public interface Neo4jMapper {
 
     /**
@@ -12,7 +17,7 @@ public interface Neo4jMapper {
      * Given a book title, this method plots all cities mentioned in this book.
      * @return ArrayList <City>
      */
-    public ArrayList <City> getMentionedCitiesByBook(String bookTitle);
+    public ArrayList<City> getMentionedCitiesByBook(String bookTitle);
 
     /**
      * Given an author name this method lists all books written by that author and plots all cities mentioned
