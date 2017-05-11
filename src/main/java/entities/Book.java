@@ -42,6 +42,27 @@ public class Book
     {
         this.language=language;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public List<String> getCities() {
+        return cities;
+    }
+
     @Override
     public String toString() {
         return "Book [id=" + id + ", title=" + title + ", author=" + author + ", language=" + language + ", cities="
