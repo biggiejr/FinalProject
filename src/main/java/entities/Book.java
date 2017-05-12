@@ -11,7 +11,10 @@ public class Book
     String language;
     List<String> cities = new ArrayList<String>();
 
-    public Book(int id, String title,String author, String language)
+    public Book() {
+    }
+
+    public Book(int id, String title, String author, String language)
     {
         this.id=id;
         this.title=title;
