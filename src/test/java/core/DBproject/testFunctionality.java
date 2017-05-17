@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Costica 08/05/2017.
  */
-public class testFunctIT {
+public class testFunctionality {
 
     @Test
     public void testFunctionality() {
