@@ -20,24 +20,27 @@ public class DBConnector {
 
 
     private String url ;
-    private Connection connection = null;
+    private MysqlDataSource dataSource = null;
 
+    public DBConnector() throws ClassNotFoundException {
 
-    public Connection getConnection() throws SQLException, ClassNotFoundException {
-
-        if (connection == null) {
+        if (dataSource == null) {
             Class.forName("com.mysql.cj.jdbc.Driver");
             url="jdbc:mysql://" + host + ":" + port + "/" + name;
             System.out.println(url);
-            MysqlDataSource dataSource = new MysqlDataSource();
+            dataSource = new MysqlDataSource();
 
             dataSource.setUser(user);
             dataSource.setPassword(password);
             dataSource.setURL(url);
-            connection = dataSource.getConnection();
         }
 
-        return connection;
+
+    }
+
+    public Connection getConnection() throws SQLException {
+
+        return dataSource.getConnection();
 
     }
 

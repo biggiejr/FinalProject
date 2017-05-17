@@ -11,7 +11,7 @@ public interface InterfaceMapper {
      * Given a city name this method returns all book titles with corresponding authors that mention this city.
      * @return ArrayList <Book>
      */
-    public ArrayList <Book> getBookByCity(String city);
+    public ArrayList <Book> getBookByCity(String city) throws Exception;
 
     /**
      * Given a book title, this method plots all cities mentioned in this book.

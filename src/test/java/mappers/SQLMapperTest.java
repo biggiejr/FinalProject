@@ -13,8 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SQLMapperTest {
     @Test
     void getBookByCity() {
-        String measured= "Hello World";
-        assertThat(measured, is(not("Hello")));
+
     }
 
     @Test
