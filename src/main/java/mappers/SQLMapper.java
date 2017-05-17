@@ -33,6 +33,12 @@ public class SQLMapper implements InterfaceMapper{
             ps.setString(1,city);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
+                int id = rs.getInt(1);
+                String title = rs.getString(2);
+                String author = rs.getString(3);
+                String language = rs.getString(4);
+                Book book = new Book(id, title, author, language);
+                books.add(book);
             }
         } catch (SQLException e) {
             e.printStackTrace();
