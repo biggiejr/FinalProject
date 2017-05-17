@@ -1,0 +1,86 @@
+<h1 style="margin: 0.538em 0px 0px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1; color: rgb(0, 0, 0); text-rendering: optimizeLegibility; font-size: 25.998001098632813px;">
+    The Project</h1>
+<p style="margin: 1em 0px 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    The task for the semester project in the database course is to build a small application that allows to figure out
+    which cities are mentioned in which English books from Project Gutenberg and given a city which books mentioned
+    it.</p>
+<p style="margin: 1em 0px 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    In essence, your application will support the following basic queries:</p>
+<h3 style="margin: 1.55em 0px 0px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1; color: rgb(0, 0, 0); text-rendering: optimizeLegibility; font-size: 18.00400161743164px;">
+    Types of queries</h3>
+<ol style="margin: 1em 2em 0px; padding: 0px; list-style-position: initial; list-style-image: initial; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">Given a city name your application returns all book titles
+        with corresponding authors that mention this city.
+    </li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">Given a book title, your application plots all cities
+        mentioned in this book onto a map.
+    </li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">Given an author name your application lists all books
+        written by that author and plots all cities mentioned in any of the books onto a map.
+    </li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">Given a geolocation, your application lists all books
+        mentioning a city in vicinity of the given geolocation.&nbsp;</li>
+</ol>
+<ul style="margin: 1em 2em 0px; padding: 0px; list-style-position: initial; list-style-image: initial; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">The input data for your application are all English books
+        from Project Gutenberg, see&nbsp;<a href="http://www.gutenberg.org/"
+                                            style="margin: 0px; padding: 0px; color: rgb(0, 136, 204);">http://www.gutenberg.org</a>.
+        Amongst others, they provide public domain books as plain text files. A description on how to automatically
+        download these books is given here:&nbsp;<a
+                href="https://www.exratione.com/2014/11/how-to-politely-download-all-english-language-text-format-files-from-project-gutenberg/"
+                style="margin: 0px; padding: 0px; color: rgb(0, 136, 204);">https://www.exratione.com/2014/11/how-to-politely-download-all-english-language-text-format-files-from-project-gutenberg/</a>.
+        Based on this, I provide a machine configuration which allows you to download all the books via a Digitalocean
+        Droplet&nbsp;<a href="https://github.com/HelgeCPH/db_course_nosql/tree/master/book_download"
+                        style="margin: 0px; padding: 0px; color: rgb(0, 136, 204);">https://github.com/HelgeCPH/db_course_nosql/tree/master/book_download</a>.
+        Alternatively, you can get all the books from a USB key in class.
+    </li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">A CSV file with many cities and their geolocations is
+        avalable from www.geonames.org&nbsp;<a href="http://download.geonames.org/export/dump/"
+                                               style="margin: 0px; padding: 0px; color: rgb(0, 136, 204);">http://download.geonames.org/export/dump/</a>&nbsp;where
+        we are especially interested in file&nbsp;<a href="http://download.geonames.org/export/dump/cities15000.zip"
+                                                     style="margin: 0px; padding: 0px; color: rgb(0, 136, 204);">http://download.geonames.org/export/dump/cities15000.zip</a>&nbsp;or&nbsp;<a
+                href="http://download.geonames.org/export/dump/cities5000.zip"
+                style="margin: 0px; padding: 0px; color: rgb(0, 136, 204);">http://download.geonames.org/export/dump/cities5000.zip</a>
+    </li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">You write a program that scans each book, i.e., each text
+        file and extracts all city names. For this task a heuristic is good enough. That is, it is okay if you miss
+        cities with extravagant names.
+    </li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">Your databases store thus, author names, book titles, and
+        names of cities, their geolocations and their occurences in texts.
+    </li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">The frontend of your application does not matter too much.
+        That is, a CLI application is as well as a web-application.
+    </li>
+</ul>
+<h2 style="margin: 1.27em 0px 0px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1; color: rgb(0, 0, 0); text-rendering: optimizeLegibility; font-size: 21.994001388549805px;">
+    Goal</h2>
+<h3 style="margin: 1.55em 0px 0px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1; color: rgb(0, 0, 0); text-rendering: optimizeLegibility; font-size: 18.00400161743164px;">
+    Build an Application with Various Databases</h3>
+<p style="margin: 1em 0px 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    The goal of the project is, that you build the above application in a way, so that you can exchange the underlying
+    database engine.</p>
+<p style="margin: 1em 0px 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    In the class, we covered three database paradigms. Relational, graph, and document-oriented databases. You build
+    your application with at least two databases from two different paradigms, for example, MySQL and Neo4j, MySQL and
+    MongoDB, Neo4j and MongoDB, etc.</p>
+<h3 style="margin: 1.55em 0px 0px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1; color: rgb(0, 0, 0); text-rendering: optimizeLegibility; font-size: 18.00400161743164px;">
+    Measure Application Behavior</h3>
+<p style="margin: 1em 0px 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    Subsequently, you define a set of test queries with at five queries per type, see above section (Types of queries).
+    That is, in total your query test set contains at least 20 queries.</p>
+<p style="margin: 1em 0px 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    Now, you meassure the reponsiveness of your application with respect</p>
+<h3 style="margin: 1.55em 0px 0px; padding: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1; color: rgb(0, 0, 0); text-rendering: optimizeLegibility; font-size: 18.00400161743164px;">
+    Report Results</h3>
+<p style="margin: 1em 0px 0px; padding: 0px; text-align: justify; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    Report:</p>
+<ul style="margin: 1em 2em 0px; padding: 0px; list-style-position: initial; list-style-image: initial; color: rgb(0, 0, 0); font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px;">
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">Which database engines are used.</li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">How data is modeled.</li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">How data is imported.</li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">Behavior of query test set.</li>
+    <li style="margin: 0px; padding: 0px; line-height: 20px;">Your recommendation, for which database engine to use in
+        such a project for production.
+    </li>
+</ul>

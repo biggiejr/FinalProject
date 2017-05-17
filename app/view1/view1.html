@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+Search by city name:
+<form ng-submit="searchByCityName()">
+    <input type="text" name="cityName" ng-model="cityName" >
+    <input type="submit" value="Submit"> </input>
+</form>
+<h5>{{cityName}}</h5>
+
+<div ng-repeat="book in books">
+    <h5>"{{book.title}}", <small>written by {{book.author}}</small></h5>
+</div>
+
+Search by book title:
+
+<form>
+    <input type="text" name="bookTitle" ng-model="bookTitle" >
+    <input type="submit" value="Submit"> </input>
+</form>
+<h5>{{bookTitle}}</h5>
+Search by author:
+
+<form>
+    <input type="text" name="authorName" ng-model="authorName" >
+    <input type="submit" value="Submit"> </input>
+</form>
+<h5>{{authorName}}</h5>
+
+Search by geolocation:
+<form>
+    <input type="text" name="latitude"> <br>
+    <input type="text" name="longitude">
+    <input type="submit" value="Submit"> </input>
+</form>
+
+<h3>Google Maps </h3>
+<div ng-app="myApp" ng-controller="View1Ctrl">
+    <init-map map="vm.map">
+    </init-map>
+</div>
+
+
+<!--Testing if the controller works-->
+<!--<div ng-controller="Query1">
+    <p>The ID is {{greeting.id}}</p>
+    <p>The content is {{greeting.content}}</p>
+</div>-->
+
+</body>
+</html>
