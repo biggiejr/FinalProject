@@ -3,7 +3,7 @@ package mappers;
 import connector.DBConnector;
 import entities.Book;
 import entities.City;
-import interfaces.InterfaceMapper;
+import interfaces.DbMapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,10 +11,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+
 /**
  * Created by Mato on 17.5.17.
  */
-public class SQLMapper implements InterfaceMapper{
+@Qualifier("sql")
+public class SQLMapper implements DbMapper{
 
     DBConnector connector = new DBConnector();
     PreparedStatement ps;
