@@ -5,12 +5,13 @@ package entities;
  */
 public class City {
 
-    String name, longitude, latitude;
+    String name;
+    Double longitude, latitude;
 
     public City() {
     }
 
-    public City(String name, String longitude, String latitude) {
+    public City(String name, Double longitude, Double latitude) {
         this.name = name;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -24,28 +25,19 @@ public class City {
         this.name = name;
     }
 
-    public String getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
-    }
-
-    @Override
-    public String toString() {
-        return "City{" +
-                "name='" + name + '\'' +
-                ", longitude='" + longitude + '\'' +
-                ", latitude='" + latitude + '\'' +
-                '}';
     }
 }
