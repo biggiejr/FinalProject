@@ -7,3 +7,10 @@
 .idea/libraries/
 target/generated-sources/
 target/generated-test-sources/
+/target/
+
+.classpath
+
+.project
+
+*.prefs
