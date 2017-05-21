@@ -1,9 +1,15 @@
 package connector;
 
 
+
+
+
+
 import com.mysql.cj.jdbc.MysqlDataSource;
 
 import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -22,14 +28,13 @@ public class DBConnector {
     private String url ;
     private MysqlDataSource dataSource = null;
 
-    public DBConnector() throws ClassNotFoundException {
+    public DBConnector() throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
 
         if (dataSource == null) {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            url="jdbc:mysql://" + host + ":" + port + "/" + name;
-            System.out.println(url);
+            DriverManager.registerDriver((Driver) Class.forName("com.mysql.cj.jdbc.Driver").newInstance());
+            url="jdbc:mysql://" + host + ":" + port + "/" + name
+                    + "?characterEncoding=utf8&useUnicode=true&sessionVariables=storage_engine%3DInnoDB&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
             dataSource = new MysqlDataSource();
-
             dataSource.setUser(user);
             dataSource.setPassword(password);
             dataSource.setURL(url);
