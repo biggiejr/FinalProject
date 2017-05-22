@@ -65,9 +65,13 @@ public class SQLMapper implements DbMapper{
         Connection con = null;
         try {
             con = connector.getConnection();
-            ps = con.prepareStatement("select cities.name,cities.longitude, cities.lattitude from cities " +
-                    "join mentioned on cities.id_cities = mentioned.id_city " +
-                    "join books on books.id_books = mentioned.id_book where books.title=?");
+            ps = con.prepareStatement(
+            		"select cities.name, cities.longitude, cities.lattitude "+
+            		"from books,cities, mentioned "+
+            		"where books.id_books=mentioned.id_book "+
+            		"and  mentioned.id_city=cities.id_cities "+
+            		"and books.title=?"
+                    );
             ps.setString(1,bookTitle);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){

@@ -35,15 +35,15 @@ public class MapperController
     @RequestMapping("/1")
     public List<Book> q1(@RequestParam(value="name", defaultValue="London") String name) throws Exception 
     {
-        
-    	return mapper.getBookByCity(name);
+        String cityName=name;
+    	return mapper.getBookByCity(cityName);
     }
     
     @RequestMapping("/2")
-    public String q2(@RequestParam(value="name", defaultValue="World") String name) 
+    public List<City> q2(@RequestParam(value="name", defaultValue="World") String name) throws Exception 
     {
-        
-    	return name;
+        String bookTitle=name;
+    	return mapper.getMentionedCitiesByBook(bookTitle);
     }
     
     @RequestMapping("/3")
