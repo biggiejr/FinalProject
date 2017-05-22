@@ -24,7 +24,7 @@ public class SQLMapper implements DbMapper{
 
     public SQLMapper() throws ClassNotFoundException {
     }
-
+    
     public ArrayList<Book> getBookByCity(String city) throws Exception {
         ArrayList<Book> books = new ArrayList<Book>();
         Connection con=null;

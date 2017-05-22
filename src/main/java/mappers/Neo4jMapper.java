@@ -1,37 +1,66 @@
 package mappers;
 
-import connector.SQLDbConnector;
+import java.util.ArrayList;
+
+import org.neo4j.driver.v1.Record;
+import org.neo4j.driver.v1.Session;
+import org.neo4j.driver.v1.StatementResult;
+import org.neo4j.driver.v1.Values;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import connector.Neo4jConnector;
 import entities.Book;
 import entities.City;
 import interfaces.DbMapper;
+import util.Wrapper;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-
-/**
- * Created by Mato on 17.5.17.
- */
 @Qualifier("neo4j")
 public class Neo4jMapper implements DbMapper {
 
-    public ArrayList<Book> getBookByCity(String city) {
+    private Neo4jConnector connector=new Neo4jConnector();
+	
+	public ArrayList<Book> getBookByCity(String city) 
+    {
+		Session s = connector.getSession();
+        ArrayList<Book> books = new ArrayList<Book>();
+        
+        String querry="MATCH (book:Book) - [:MENTIONED]->(city:City) "+
+        "WHERE city.city = {cityName} "+
+        "RETURN book.id, book.title, book.author";
+        
+        StatementResult result=s.run(querry,Values.parameters( "cityName", city ) );
+        
+        
+        while(result.hasNext())
+        {
+        	Record record=result.next();
+        	Integer id=Wrapper.getInt(record.
+        			get("book.id"));
+        	
+        	String title=record.get("book.title").asString();
+        	String author=record.get("book.author").asString();
+        	books.add(new Book(id,title,author,"English"));
+        	
+        }
+        
+        
+        s.close();
+    	return books;
+    }
+
+    public ArrayList<City> getMentionedCitiesByBook(String bookTitle) 
+    {
         return null;
     }
 
-    public ArrayList<City> getMentionedCitiesByBook(String bookTitle) {
+    public ArrayList<Book> getMentionedCitiesByAuthor(String author) 
+    {
         return null;
     }
 
-    public ArrayList<Book> getMentionedCitiesByAuthor(String author) {
-        return null;
-    }
-
-    public ArrayList<Book> getAllBooksByCity(String location) {
+    public ArrayList<Book> getAllBooksByCity(String location) 
+    {
         return null;
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Book
 {
-    int id;
+    Integer id;
     String title;
     String author;
     String language;
@@ -14,7 +14,7 @@ public class Book
     public Book() {
     }
 
-    public Book(int id, String title, String author, String language)
+    public Book(Integer id, String title, String author, String language)
     {
         this.id=id;
         this.title=title;

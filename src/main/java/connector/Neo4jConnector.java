@@ -12,7 +12,7 @@ public class Neo4jConnector {
 
     private String userName = "neo4j";
     private String password = "admin";
-    private String url = "bolt://localhost:7474";
+    private String url = "bolt://localhost";
 
     private Driver neo4jDataSource = null;
 
