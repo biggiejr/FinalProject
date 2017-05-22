@@ -1,6 +1,6 @@
 package mappers;
 
-import connector.DBConnector;
+import connector.SQLDbConnector;
 import entities.Book;
 import entities.City;
 import interfaces.DbMapper;
@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 @Qualifier("sql")
 public class SQLMapper implements DbMapper{
 
-    DBConnector connector = new DBConnector();
+    SQLDbConnector connector = new SQLDbConnector();
     PreparedStatement ps;
 
     public SQLMapper() throws ClassNotFoundException {
@@ -30,17 +30,22 @@ public class SQLMapper implements DbMapper{
         Connection con=null;
         try {
             con= connector.getConnection();
-            ps = con.prepareStatement("select title,author from books join mentioned on " +
-                    "books.id_books = mentioned.id_book join cities on " +
-                    "cities.id_cities = mentioned.id_city where cities.`name`=?");
+            ps = con.prepareStatement(
+            		"select books.id_books, title,author "+
+            		"from books, mentioned, cities "+
+            		"where books.id_books = mentioned.id_book and "+
+            		"cities.id_cities = mentioned.id_city and "+
+            		"cities.name=?;"
+            		);
+
             ps.setString(1,city);
             ResultSet rs= ps.executeQuery();
             while (rs.next()){
                 int id = rs.getInt(1);
                 String title = rs.getString(2);
                 String author = rs.getString(3);
-                String language = rs.getString(4);
-                Book book = new Book(id, title, author, language);
+                //String language = rs.getString(4);
+                Book book = new Book(id, title, author, "English");
                 books.add(book);
             }
         } catch (SQLException e) {

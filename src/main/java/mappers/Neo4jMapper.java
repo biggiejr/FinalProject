@@ -1,6 +1,6 @@
 package mappers;
 
-import connector.DBConnector;
+import connector.SQLDbConnector;
 import entities.Book;
 import entities.City;
 import interfaces.DbMapper;

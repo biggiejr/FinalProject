@@ -32,10 +32,10 @@ class Neo4jMapperTest {
         Book book3 = new Book(3, "book3", "author3", "English");
         Book book4 = new Book(4, "book4", "author4", "English");
 
-        City city1 = new City("Dubai","","");
-        City city2 = new City("Copenhagen","","");
-        City city3 = new City("Stockholm","","");
-        City city4 = new City("Paris","","");
+//        City city1 = new City("Dubai","","");
+//        City city2 = new City("Copenhagen","","");
+//        City city3 = new City("Stockholm","","");
+//        City city4 = new City("Paris","","");
 
         bookArrayList.add(book1);
         bookArrayList.add(book2);

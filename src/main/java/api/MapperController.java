@@ -18,7 +18,6 @@ import interfaces.DbMapper;
 @RestController
 public class MapperController 
 {
-	private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
     private DbMapper mapper;
 

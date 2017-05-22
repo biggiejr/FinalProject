@@ -1,4 +1,4 @@
-import connector.DBConnector;
+import connector.SQLDbConnector;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class TestConnection {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        DBConnector dbConnector = new DBConnector();
+        SQLDbConnector dbConnector = new SQLDbConnector();
         Connection con = dbConnector.getConnection();
         System.out.println(con.getMetaData());
     }

@@ -9,20 +9,20 @@ import java.sql.SQLException;
 /**
  * Created by Mato on 12.5.17.
  */
-public class DBConnector {
+public class SQLDbConnector {
 
 
-    private final String user = "adminzBNmR8r";
-    private final String password = "zuzf-vAUPkJp";
-    private final String host = "127.5.138.130";
+    private final String user = "root";
+    private final String password = "admin";
+    private final String host = "127.0.0.1";
     private final String port = "3306";
-    private final String name = "integers";
+    private final String name = "project";
 
 
     private String url ;
     private MysqlDataSource dataSource = null;
 
-    public DBConnector() throws ClassNotFoundException {
+    public SQLDbConnector() throws ClassNotFoundException {
 
         if (dataSource == null) {
             Class.forName("com.mysql.cj.jdbc.Driver");

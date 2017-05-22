@@ -1,4 +1,4 @@
-package core.DBproject;
+package travisStuff;
 
 /**
  * Created by CosticaTeodor on 08/05/2017.

@@ -74,8 +74,8 @@ public class Book
 
     public String citiesToString()
     {
-        String container=cities.get(0);
-        for (int i=1;i<cities.size();i++) container+=", "+cities.get(i);
+        String container="";
+        for (int i=0;i<cities.size();i++) container+=", "+cities.get(i);
         return container;
     }
 

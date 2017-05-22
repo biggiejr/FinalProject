@@ -2,6 +2,8 @@ package core.DBproject;
 
 import org.junit.Test;
 
+import travisStuff.functionality;
+
 import static org.junit.Assert.assertEquals;
 
 /**
