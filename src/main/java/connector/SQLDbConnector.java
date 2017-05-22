@@ -12,11 +12,11 @@ import java.sql.SQLException;
 public class SQLDbConnector {
 
 
-    private final String user = "root";
-    private final String password = "admin";
-    private final String host = "127.0.0.1";
-    private final String port = "3306";
-    private final String name = "project";
+    private String userName = "root";
+    private String password = "admin";
+    private String host = "127.0.0.1";
+    private String port = "3306";
+    private String name = "project";
 
 
     private String url ;
@@ -30,7 +30,7 @@ public class SQLDbConnector {
             System.out.println(url);
             dataSource = new MysqlDataSource();
 
-            dataSource.setUser(user);
+            dataSource.setUser(userName);
             dataSource.setPassword(password);
             dataSource.setURL(url);
         }

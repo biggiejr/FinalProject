@@ -8,3 +8,9 @@
 .project
 
 *.prefs
+
+*.class
+
+*.class
+
+*.xml
