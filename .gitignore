@@ -4,10 +4,6 @@
 .idea/workspace.xml
 
 !/pom.xml
-.idea/libraries/
-target/generated-sources/
-target/generated-test-sources/
-/target/
 
 .classpath
 
