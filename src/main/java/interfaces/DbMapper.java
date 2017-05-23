@@ -35,6 +35,6 @@ public interface DbMapper {
      * Given a geolocation, this method lists all books mentioning a city in vicinity of the given geolocation.
      * @return ArrayList <Book>
      */
-    public ArrayList <Book> getAllBooksByCity(String location);
+    public ArrayList <Book> getAllBooksByCity(Double latitude, Double longitude);
 
 }

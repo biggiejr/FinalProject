@@ -1,5 +1,6 @@
 package api;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 import org.springframework.boot.CommandLineRunner;
@@ -14,10 +15,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @ImportResource("file:src/main/resources/Beans.xml")
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
        // ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/resources/Beans.xml");
     	SpringApplication app= new SpringApplication(Application.class);
     	app.run();
+    	VicinityLocator vic = new VicinityLocator();
+        System.out.println(vic.getCityNameByCoordinates( -102.28259,21.88234));
        // SpringApplication.run(Application.class, args);
     }
     

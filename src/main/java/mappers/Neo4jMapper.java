@@ -1,7 +1,9 @@
 package mappers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import api.VicinityLocator;
 import org.neo4j.driver.v1.Record;
 import org.neo4j.driver.v1.Session;
 import org.neo4j.driver.v1.StatementResult;
@@ -19,6 +21,7 @@ import util.Wrapper;
 public class Neo4jMapper implements DbMapper {
 
     private Neo4jConnector connector = new Neo4jConnector();
+    VicinityLocator vl = new VicinityLocator();
 
     public ArrayList<Book> getBookByCity(String city) {
         Session s = connector.getSession();
@@ -112,8 +115,36 @@ public class Neo4jMapper implements DbMapper {
 
 }
 
-    public ArrayList<Book> getAllBooksByCity(String location) 
+    public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude)
     {
-        return null;
+        String city = null;
+        try {
+            city = vl.getCityNameByCoordinates(longitude,latitude);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Session s = connector.getSession();
+        ArrayList<Book> books = new ArrayList<Book>();
+
+        String query = "MATCH (city:City)<-[:MENTIONED]-(book:Book) " +
+                " WHERE city.city = {cityName} " +
+                "RETURN book.id, book.author, book.title";
+
+        StatementResult result = s.run(query, Values.parameters("cityName", city));
+
+
+        while (result.hasNext()) {
+            Record record = result.next();
+            Integer id = Wrapper.getInt(record.
+                    get("book.id"));
+
+            String title = record.get("book.title").asString();
+            String author = record.get("book.title").asString();
+            books.add(new Book(id, title, author, "English"));
+        }
+
+        s.close();
+        return books;
+
     }
 }
