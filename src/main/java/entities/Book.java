@@ -9,7 +9,7 @@ public class Book
     String title;
     String author;
     String language;
-    List<String> cities = new ArrayList<String>();
+    private List<City> cities = new ArrayList<City>();
 
     public Book() {
     }
@@ -26,7 +26,7 @@ public class Book
         this.id=id;
     }
 
-    public void addCity(String city)
+    public void addCity(City city)
     {
         if (!cities.contains(city)) cities.add(city);
     }
@@ -62,7 +62,7 @@ public class Book
         return language;
     }
 
-    public List<String> getCities() {
+    public List<City> getCities() {
         return cities;
     }
 

@@ -12,5 +12,14 @@ public class Wrapper
 		return null;
 	}
 	
+	public static Double getDouble(Value v)
+	{
+		if(!v.isNull()) 
+			return v.asDouble();
+		return null;
+	}
+	
+	
+	
 	
 }

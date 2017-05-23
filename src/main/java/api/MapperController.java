@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ public class MapperController
     private DbMapper mapper;
 
     @Autowired
-    public MapperController(@Qualifier("sql") DbMapper mapper) 
+    public MapperController(@Qualifier("neo4j") DbMapper mapper) 
     {
 		this.mapper=mapper;
 	}
@@ -32,32 +33,34 @@ public class MapperController
     	this.mapper=mapper;
     }
     
+    @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/1")
-    public List<Book> q1(@RequestParam(value="name", defaultValue="London") String name) throws Exception 
+    public List<Book> q1(@RequestParam(value="cityName", defaultValue="London") String cityName) throws Exception 
     {
-        String cityName=name;
     	return mapper.getBookByCity(cityName);
     }
     
+    @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/2")
-    public List<City> q2(@RequestParam(value="name", defaultValue="World") String name) throws Exception 
+    public List<City> q2(@RequestParam(value="bookTitle") String bookTitle) throws Exception 
     {
-        String bookTitle=name;
     	return mapper.getMentionedCitiesByBook(bookTitle);
     }
     
+    @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/3")
-    public String q3(@RequestParam(value="name", defaultValue="World") String name) 
+    public ArrayList<Book> q3(@RequestParam(value="author") String author) 
     {
-        
-    	return name;
+    	System.out.println("hey");
+    	return mapper.getMentionedCitiesByAuthor(author);
     }
     
+    @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/4")
-    public String q4(@RequestParam(value="name", defaultValue="World") String name) 
+    public ArrayList<Book> q4(@RequestParam(value="latitude") Double latitude,@RequestParam(value="longitude") Double longitude) 
     {
         
-    	return name;
+    	return mapper.getAllBooksByCity(latitude, longitude);
     }
 
 }

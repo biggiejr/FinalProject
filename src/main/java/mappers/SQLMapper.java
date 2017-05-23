@@ -92,11 +92,13 @@ public class SQLMapper implements DbMapper{
 
     }
 
-    public Object[] getMentionedCitiesByAuthor(String author) {
+    public ArrayList<Book> getMentionedCitiesByAuthor(String author) 
+    {
         return null;
     }
 
-    public ArrayList<Book> getAllBooksByCity(String location) {
-        return null;
-    }
+    public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude) {
+		return null;
+	}
+    
 }

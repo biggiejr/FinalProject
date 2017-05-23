@@ -1,8 +1,6 @@
 
 .idea/workspace.xml
 
-!/pom.xml
-
 .classpath
 
 .project
@@ -15,3 +13,7 @@
 
 *.xml
 /target/
+
+*.class
+
+*.class

@@ -20,7 +20,6 @@ public class Application {
     	SpringApplication app= new SpringApplication(Application.class);
     	app.run();
     	VicinityLocator vic = new VicinityLocator();
-        System.out.println(vic.getCityNameByCoordinates( -102.28259,21.88234));
        // SpringApplication.run(Application.class, args);
     }
     

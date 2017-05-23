@@ -28,13 +28,14 @@ public interface DbMapper {
      * in any of the books.
      * @return ArrayList <Book>
      */
-    public Object[] getMentionedCitiesByAuthor(String author);
+    public ArrayList<Book> getMentionedCitiesByAuthor(String author) ;
+    
 
     /**
      * q4
      * Given a geolocation, this method lists all books mentioning a city in vicinity of the given geolocation.
      * @return ArrayList <Book>
      */
-    public ArrayList <Book> getAllBooksByCity(Double latitude, Double longitude);
+    public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude);
 
 }

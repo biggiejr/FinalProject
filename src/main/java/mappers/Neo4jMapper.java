@@ -19,6 +19,7 @@ import util.Wrapper;
 
 @Qualifier("neo4j")
 public class Neo4jMapper implements DbMapper {
+	//Book currentBook;
 
     private Neo4jConnector connector = new Neo4jConnector();
     VicinityLocator vl = new VicinityLocator();
@@ -79,7 +80,8 @@ public class Neo4jMapper implements DbMapper {
         return cities;
     }
 
-    public Object[] getMentionedCitiesByAuthor(String author) {
+    public ArrayList<Book> getMentionedCitiesByAuthor(String author) 
+    {
 
     Session s = connector.getSession();
     ArrayList<City> cities = new ArrayList<City>();
@@ -92,26 +94,47 @@ public class Neo4jMapper implements DbMapper {
     StatementResult result = s.run(querry, Values.parameters("author", author));
 
 
+    String currentTitle="";
+    Book currentBook=null;
         while(result.hasNext())
 
     {
         Record record = result.next();
         Integer bookId = Wrapper.getInt(record.
                 get("book.id"));
+        
         String bookTitle = record.get("book.title").asString();
         String bookAuthor = record.get("book.author").asString();
         String bookLanguage = record.get("book.language").asString();
-
-
+        
         String cityName = record.get("city.city").asString();
-        Double latitude = record.get("city.latitude").asDouble();
-        Double longitude = record.get("city.longitude").asDouble();
+        Double latitude = Double.parseDouble(record.get("city.latitude").asString());
+        Double longitude = Double.parseDouble(record.get("city.longitude").asString());
+        if (currentBook!=null)
+        {
+        	if(!currentBook.getTitle().equals(bookTitle))
+        	{
+        		books.add(currentBook);
+        		currentBook=new Book(bookId,bookTitle,bookAuthor,bookLanguage);
+        	}
+        	
+        }
+        else currentBook=new Book(bookId,bookTitle,bookAuthor,bookLanguage);
+        currentBook.addCity(new City(cityName, latitude, longitude));
+        
 
-        books.add(new Book(bookId,bookTitle,bookAuthor,bookLanguage));
-        cities.add(new City(cityName, latitude, longitude));
+
+        
+
+       // System.out.println();
+        //books.add(new Book(bookId,bookTitle,bookAuthor,bookLanguage));
+        //books.add(new Book(bookId,bookTitle,bookAuthor,bookLanguage));
+        //cities.add(new City(cityName, latitude, longitude));
 
     }
-        return new Object[]{books, cities};
+        books.add(currentBook);
+        
+        return books;
 
 }
 
