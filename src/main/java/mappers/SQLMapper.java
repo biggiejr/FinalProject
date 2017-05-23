@@ -92,9 +92,54 @@ public class SQLMapper implements DbMapper{
 
     }
 
-    public ArrayList<Book> getMentionedCitiesByAuthor(String author) 
+    public ArrayList<Book> getMentionedCitiesByAuthor(String author) throws SQLException 
     {
-        return null;
+    	ArrayList<Book> books = new ArrayList<Book>();
+        Connection con=null;
+        try {
+            con= connector.getConnection();
+            ps = con.prepareStatement(
+            		"select books.*, cities.name as cityName, cities.lattitude, cities.longitude "+
+            		"from books, cities, mentioned "+
+            		"where books.id_books=mentioned.id_book "+ 
+            		"and mentioned.id_city=cities.id_cities "+
+            		"and books.author=?"
+            		);
+
+            ps.setString(1,author);
+            ResultSet rs= ps.executeQuery();
+            Book currentBook=null;
+            while (rs.next()){
+                int bookId = rs.getInt(1);
+                String bookTitle = rs.getString(2);
+                String bookLanguage = rs.getString(3);
+                String bookAuthor = rs.getString(4);
+                            
+            	String cityName = rs.getString(5);;
+            	Double latitude = Double.parseDouble(rs.getString(6));
+            	Double longitude = Double.parseDouble(rs.getString(7));
+            	if (currentBook!=null)
+            	{
+            		if(!currentBook.getTitle().equals(bookTitle))
+            		{
+            			books.add(currentBook);
+            			currentBook=new Book(bookId,bookTitle,bookAuthor,bookLanguage);
+            		}
+            	
+            	}
+            	else currentBook=new Book(bookId,bookTitle,bookAuthor,bookLanguage);
+            	currentBook.addCity(new City(cityName, latitude, longitude));
+            }
+            books.add(currentBook);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(con!=null){
+                con.close();
+            }
+        }
+        return books;
     }
 
     public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude) {

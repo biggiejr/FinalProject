@@ -28,7 +28,7 @@ public interface DbMapper {
      * in any of the books.
      * @return ArrayList <Book>
      */
-    public ArrayList<Book> getMentionedCitiesByAuthor(String author) ;
+    public ArrayList<Book> getMentionedCitiesByAuthor(String author) throws Exception ;
     
 
     /**

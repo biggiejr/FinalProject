@@ -83,60 +83,47 @@ public class Neo4jMapper implements DbMapper {
     public ArrayList<Book> getMentionedCitiesByAuthor(String author) 
     {
 
-    Session s = connector.getSession();
-    ArrayList<City> cities = new ArrayList<City>();
-    ArrayList<Book> books = new ArrayList<Book>();
+    	Session s = connector.getSession();
+    	ArrayList<City> cities = new ArrayList<City>();
+    	ArrayList<Book> books = new ArrayList<Book>();
 
-    String querry = "MATCH (book:Book) - [:MENTIONED]->(city:City) " +
+    	String querry = "MATCH (book:Book) - [:MENTIONED]->(city:City) " +
             "WHERE book.author ={author}  " +
             "RETURN book.id, book.title, book.author, book.language, city.city, city.latitude, city.longitude";
 
-    StatementResult result = s.run(querry, Values.parameters("author", author));
+    	StatementResult result = s.run(querry, Values.parameters("author", author));
 
-
-    String currentTitle="";
-    Book currentBook=null;
+    	Book currentBook=null;
         while(result.hasNext())
-
-    {
-        Record record = result.next();
-        Integer bookId = Wrapper.getInt(record.
+        {
+        	Record record = result.next();
+        	Integer bookId = Wrapper.getInt(record.
                 get("book.id"));
         
-        String bookTitle = record.get("book.title").asString();
-        String bookAuthor = record.get("book.author").asString();
-        String bookLanguage = record.get("book.language").asString();
+        	String bookTitle = record.get("book.title").asString();
+        	String bookAuthor = record.get("book.author").asString();
+        	String bookLanguage = record.get("book.language").asString();
         
-        String cityName = record.get("city.city").asString();
-        Double latitude = Double.parseDouble(record.get("city.latitude").asString());
-        Double longitude = Double.parseDouble(record.get("city.longitude").asString());
-        if (currentBook!=null)
-        {
-        	if(!currentBook.getTitle().equals(bookTitle))
+        	String cityName = record.get("city.city").asString();
+        	Double latitude = Double.parseDouble(record.get("city.latitude").asString());
+        	Double longitude = Double.parseDouble(record.get("city.longitude").asString());
+        	if (currentBook!=null)
         	{
-        		books.add(currentBook);
-        		currentBook=new Book(bookId,bookTitle,bookAuthor,bookLanguage);
-        	}
+        		if(!currentBook.getTitle().equals(bookTitle))
+        		{
+        			books.add(currentBook);
+        			currentBook=new Book(bookId,bookTitle,bookAuthor,bookLanguage);
+        		}
         	
+        	}
+        	else currentBook=new Book(bookId,bookTitle,bookAuthor,bookLanguage);
+        	currentBook.addCity(new City(cityName, latitude, longitude));
         }
-        else currentBook=new Book(bookId,bookTitle,bookAuthor,bookLanguage);
-        currentBook.addCity(new City(cityName, latitude, longitude));
-        
-
-
-        
-
-       // System.out.println();
-        //books.add(new Book(bookId,bookTitle,bookAuthor,bookLanguage));
-        //books.add(new Book(bookId,bookTitle,bookAuthor,bookLanguage));
-        //cities.add(new City(cityName, latitude, longitude));
-
-    }
         books.add(currentBook);
-        
+        s.close();
         return books;
 
-}
+    }
 
     public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude)
     {

@@ -23,7 +23,7 @@ public class MapperController
     private DbMapper mapper;
 
     @Autowired
-    public MapperController(@Qualifier("neo4j") DbMapper mapper) 
+    public MapperController(@Qualifier("sql") DbMapper mapper) 
     {
 		this.mapper=mapper;
 	}
@@ -35,7 +35,7 @@ public class MapperController
     
     @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/1")
-    public List<Book> q1(@RequestParam(value="cityName", defaultValue="London") String cityName) throws Exception 
+    public List<Book> q1(@RequestParam(value="cityName") String cityName) throws Exception 
     {
     	return mapper.getBookByCity(cityName);
     }
@@ -49,9 +49,8 @@ public class MapperController
     
     @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/3")
-    public ArrayList<Book> q3(@RequestParam(value="author") String author) 
+    public ArrayList<Book> q3(@RequestParam(value="author") String author) throws Exception 
     {
-    	System.out.println("hey");
     	return mapper.getMentionedCitiesByAuthor(author);
     }
     

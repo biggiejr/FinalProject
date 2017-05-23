@@ -19,6 +19,9 @@ public class Application {
        // ApplicationContext context = new ClassPathXmlApplicationContext("file:src/main/resources/Beans.xml");
     	SpringApplication app= new SpringApplication(Application.class);
     	app.run();
+    	System.out.println();
+    	System.out.println("----------------Application is ready------------------");
+    	System.out.println();
     	VicinityLocator vic = new VicinityLocator();
        // SpringApplication.run(Application.class, args);
     }
