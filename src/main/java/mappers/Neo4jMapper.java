@@ -108,8 +108,8 @@ public class Neo4jMapper implements DbMapper {
         	String bookLanguage = record.get("book.language").asString();
         
         	String cityName = record.get("city.city").asString();
-        	Double latitude = Double.parseDouble(record.get("city.latitude").asString());
-        	Double longitude = Double.parseDouble(record.get("city.longitude").asString());
+        	Double latitude = record.get("city.latitude").asDouble();
+        	Double longitude = record.get("city.longitude").asDouble();
         	if (currentBook!=null)
         	{
         		if(!currentBook.getTitle().equals(bookTitle))
@@ -135,14 +135,11 @@ public class Neo4jMapper implements DbMapper {
        String query =  "MATCH (b:City)<-[:MENTIONED]-(a:Book) \n" +
                "    WITH  a, b, distance( point({ latitude: {latitudeInput}, longitude:{longitudeInput} }), " +
                "point({ latitude: b.latitude, longitude:b.longitude }) ) as dist \n" +
-               "        WHERE dist<={radius}*1000 and dist>1*1000\n" +
+               "        WHERE dist<={radius}*1000 \n" +
                "RETURN  a.id, a.title, a.language, a.author, b.id, b.city, b.latitude, b.longitude\n" +
                "ORDER BY dist DESC";
         Session s = connector.getSession();
         ArrayList<Book> books = new ArrayList<Book>();
-
-
-
 
         Map<String,Object> map= new HashMap();
         map.put("latitudeInput", latitude);
