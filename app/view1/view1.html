@@ -1,36 +1,67 @@
 <!DOCTYPE html>
 <html>
+<style>
+    table, th , td  {
+        border: 1px solid grey;
+        border-collapse: collapse;
+        padding: 5px;
+    }
+    table tr:nth-child(odd) {
+        background-color: #f1f1f1;
+    }
+    table tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+</style>
 <head>
 </head>
 <body>
 
-Search by city name:
+Q1: Search by city name:
+<div ng-app="myApp.view1" ng-controller="Query1">
 <form ng-submit="searchByCityName()">
-    <input type="text" name="cityName" ng-model="cityName" >
+    <input type="text" name="cityName" ng-model="cityName">
     <input type="submit" value="Submit"> </input>
 </form>
-<h5>{{cityName}}</h5>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+        </tr>
+        <tr ng-repeat="x in books">
+            <td>Title: {{ x.title }}</td>
+            <td>Author: {{ x.author }}</td>
+            <br>
+        </tr>
+    </table>
+</div>
+Q2: Search by book title:
+<div ng-app="myApp.view1" ng-controller="Query2">
+<form ng-submit="searchByBookTitle()">
+    <input type="text" name="bookTitle" ng-model="bookTitle">
+    <input type="submit" value="Submit"> </input>
+</form>
+</div>
+Q3: Search by author:
 
-<div ng-repeat="book in books">
-    <h5>"{{book.title}}", <small>written by {{book.author}}</small></h5>
+<div ng-app="myApp.view1" ng-controller="Query3">
+<form ng-submit="searchByAuthorName()">
+    <input type="text" name="authorName" ng-model="authorName">
+    <input type="submit" value="Submit"> </input>
+</form>
 </div>
 
-Search by book title:
+<table>
+    <tr>
+        <th>Books written by author : {{authorName}}</th>
+    </tr>
+    <tr ng-repeat="x in books">
+        <td>Title: {{ x.title }}</td>
+        <br>
+    </tr>
+</table>
 
-<form>
-    <input type="text" name="bookTitle" ng-model="bookTitle" >
-    <input type="submit" value="Submit"> </input>
-</form>
-<h5>{{bookTitle}}</h5>
-Search by author:
-
-<form>
-    <input type="text" name="authorName" ng-model="authorName" >
-    <input type="submit" value="Submit"> </input>
-</form>
-<h5>{{authorName}}</h5>
-
-Search by geolocation:
+Q4: Search by geolocation:
 <form>
     <input type="text" name="latitude"> <br>
     <input type="text" name="longitude">
@@ -38,17 +69,14 @@ Search by geolocation:
 </form>
 
 <h3>Google Maps </h3>
-<div ng-app="myApp" ng-controller="View1Ctrl">
+<!--<div ng-app="myApp" ng-controller="View1Ctrl">
     <init-map map="vm.map">
     </init-map>
+</div>-->
+<div ng-app="myApp.view1" ng-controller="MapCtrl">
+    <div id="map"></div>
 </div>
 
-
-<!--Testing if the controller works-->
-<!--<div ng-controller="Query1">
-    <p>The ID is {{greeting.id}}</p>
-    <p>The content is {{greeting.content}}</p>
-</div>-->
 
 </body>
 </html>
