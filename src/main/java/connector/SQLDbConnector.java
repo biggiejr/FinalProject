@@ -13,10 +13,10 @@ public class SQLDbConnector {
 
 
     private String userName = "root";
-    private String password = "admin";
+    private String password = "";
     private String host = "127.0.0.1";
-    private String port = "3306";
-    private String name = "project";
+    private String port = "3307";
+    private String name = "newschema";
 
 
     private String url ;

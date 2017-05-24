@@ -24,7 +24,7 @@ public class MapperController
     private DbMapper mapper;
 
     @Autowired
-    public MapperController(@Qualifier("sql") DbMapper mapper) 
+    public MapperController(@Qualifier("neo4j") DbMapper mapper)
     {
 		this.mapper=mapper;
 	}
