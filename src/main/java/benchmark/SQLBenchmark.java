@@ -13,7 +13,7 @@ public class SQLBenchmark
 {
 
     SQLMapper sql = new SQLMapper();
-    List<Integer> timeMeasures = null;
+    List<Integer> timeMeasures = new ArrayList<>();
 
     public SQLBenchmark() throws ClassNotFoundException {
     }
