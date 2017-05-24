@@ -93,14 +93,25 @@ angular.module('myApp.view1', ['ngRoute'])
         var authorName = $scope.authorName;
         $http.get('http://localhost:8080/3?author=' + authorName + '')
             .then(function (response) {
-            $scope.books = response.data[0].cities;
-            console.log($scope.books[0].cities);
-                var arrayLength = $scope.books.length;
+            $scope.boks = response.data;
+                var arrayLength = $scope.boks.length;
+
                 for (var i = 0; i < arrayLength; i++) {
-                    var lat = $scope.books[i].latitude;
-                    var lng = $scope.books[i].longitude;
-                    MapService.addtomap(lat, lng);
+                    var cities = $scope.boks[i].cities;
+                    cities.forEach(function(location) {
+                        var lat = location.latitude;
+                        var lng = location.longitude;
+                        MapService.addtomap(lat, lng);
+                    });
+                    /*for (var j = 0; j < $scope.boks[i]; j++) {
+                        var lat = $scope.boks[j].cities.latitude;
+                        var lng = $scope.boks[j].cities.longitude;
+                        MapService.addtomap(lat, lng);
+                    }*/
                 }
+
+                $scope.booksq3 = response.data;
+
         });
         }
     }])

@@ -49,17 +49,19 @@ Q3: Search by author:
     <input type="text" name="authorName" ng-model="authorName">
     <input type="submit" value="Submit"> </input>
 </form>
+
+    <table>
+        <tr>
+            <th>Books written by author : {{authorName}}</th>
+        </tr>
+        <tr ng-repeat="x in booksq3">
+            <td>Title: {{ x.title }}</td>
+            <br>
+        </tr>
+    </table>
+
 </div>
 
-<table>
-    <tr>
-        <th>Books written by author : {{authorName}}</th>
-    </tr>
-    <tr ng-repeat="x in books">
-        <td>Title: {{ x.title }}</td>
-        <br>
-    </tr>
-</table>
 
 Q4: Search by geolocation:
 <form>
