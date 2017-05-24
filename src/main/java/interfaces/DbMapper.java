@@ -3,6 +3,7 @@ package interfaces;
 import entities.Book;
 import entities.City;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,8 @@ public interface DbMapper {
      * q4
      * Given a geolocation, this method lists all books mentioning a city in vicinity of the given geolocation.
      * @return ArrayList <Book>
+     * @throws SQLException 
      */
-    public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude);
+    public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude) throws SQLException;
 
 }

@@ -1,5 +1,6 @@
 package api;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
@@ -56,7 +57,7 @@ public class MapperController
     
     @CrossOrigin(origins = "http://localhost:63342")
     @RequestMapping("/4")
-    public ArrayList<Book> q4(@RequestParam(value="latitude") Double latitude,@RequestParam(value="longitude") Double longitude) 
+    public ArrayList<Book> q4(@RequestParam(value="latitude") Double latitude,@RequestParam(value="longitude") Double longitude) throws SQLException 
     {
         
     	return mapper.getAllBooksByCity(latitude, longitude);

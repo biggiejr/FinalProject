@@ -142,8 +142,56 @@ public class SQLMapper implements DbMapper{
         return books;
     }
 
-    public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude) {
-		return null;
+    public ArrayList<Book> getAllBooksByCity(Double latitude, Double longitude) throws SQLException {
+    	ArrayList<Book> books = new ArrayList<Book>();
+        Connection con=null;
+        Book currentBook=null;
+        try {
+            con= connector.getConnection();
+            ps = con.prepareStatement(
+            		"SELECT books.*, cities.* "+
+            		"FROM books, cities, mentioned "+
+            		"WHERE books.id_books=mentioned.id_book and "+
+            		"mentioned.id_city=cities.id_cities and "+
+            		"cities.id_cities IN( "+
+            		"SELECT cities.id_cities "+
+            		"FROM cities "+
+            		"WHERE( "+
+            		"6371 * acos( "+
+            		"cos(radians(?)) * cos(radians(cities.lattitude)) * cos(radians(cities.longitude) "+ 
+            		"- radians(?)) + sin ( radians(?) ) * sin(radians( cities.lattitude )) "+
+            		                ") <50))"
+            		);
+
+            ps.setDouble(1,longitude);
+            ps.setDouble(2,latitude);
+            ps.setDouble(3,longitude);
+            System.out.println(ps.toString());
+            ResultSet rs= ps.executeQuery();
+            while (rs.next()){
+                int bookId = rs.getInt(1);
+                String bookTitle = rs.getString(2);
+                String bookLanguage = rs.getString(3);
+                String bookAuthor = rs.getString(4);
+                            
+            	int cityId=rs.getInt(5);
+                String cityName = rs.getString(6);
+            	latitude = Double.parseDouble(rs.getString(7));
+            	longitude = Double.parseDouble(rs.getString(8));
+            	currentBook=new Book(bookId,bookTitle,bookLanguage,bookAuthor);
+            	currentBook.addCity(new City(cityName,longitude,latitude));
+            	books.add(currentBook);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(con!=null){
+                con.close();
+            }
+        }
+        return books;
 	}
     
 }
