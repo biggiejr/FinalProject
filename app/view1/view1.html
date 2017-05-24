@@ -64,11 +64,24 @@ Q3: Search by author:
 
 
 Q4: Search by geolocation:
-<form>
-    <input type="text" name="latitude"> <br>
-    <input type="text" name="longitude">
+<div ng-app="myApp.view1" ng-controller="Query4">
+<form ng-submit="searchGeoLocation()">
+    Latitude<input type="text" name="latitude" ng-model="latitude"> <br>
+    Longitude<input type="text" name="longitude" ng-model="longitude">
     <input type="submit" value="Submit"> </input>
 </form>
+
+    <table>
+        <tr>
+            <th>Books in vicinity of : {{latitude}}, {{longitude}}</th>
+        </tr>
+        <tr ng-repeat="x in booksq4">
+            <td>Title: {{ x.title }}</td>
+            <br>
+        </tr>
+    </table>
+
+</div>
 
 <h3>Google Maps </h3>
 <!--<div ng-app="myApp" ng-controller="View1Ctrl">

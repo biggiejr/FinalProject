@@ -117,9 +117,17 @@ angular.module('myApp.view1', ['ngRoute'])
     }])
 
     .controller('Query4', ['$scope', '$http', function ($scope, $http) {
-        $http.get('http://rest-service.guides.spring.io/greeting').then(function (response) {
-            $scope.greeting = response.data;
+        $scope.searchGeoLocation = function(){
+        var latitude = $scope.latitude;
+        var longitude = $scope.longitude;
+        console.log(latitude + '|' + longitude);
+        $http.get('http://localhost:8080/4?latitude=' + latitude + '&' + 'longitude=' + longitude + '')
+            //$http.get('http://localhost:8080/4?latitude=-81.23304&longitude=42.98339')
+            .then(function (response) {
+            $scope.booksq4 = response.data;
+            console.log($scope.booksq4);
         });
+        }
     }])
 
     .controller('View1Ctrl', ['$scope', '$http', function ($scope, $http) {
